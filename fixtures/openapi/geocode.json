@@ -1,0 +1,1 @@
+{"info":{"title":"Offline subset of Geoapify forward-geocoding OpenAPI","version":"snapshot-2026-10-12"},"security":[{"ApiKeyInHeader":[]}],"paths":{"/geocode/search":{"get":{"parameters":[{"name":"text"},{"name":"format"},{"name":"limit"}]}}}}

@@ -1,0 +1,1 @@
+{"info":{"title":"Offline subset of Geoapify Routing OpenAPI","version":"snapshot-2026-10-12"},"security":[{"ApiKeyInHeader":[]}],"paths":{"/routing":{"get":{"parameters":[{"name":"waypoints"},{"name":"mode"},{"name":"format"}]}}}}

@@ -1,0 +1,1 @@
+{"info":{"title":"Offline subset of Geoapify MCP OpenAPI","version":"snapshot-2026-10-12"},"security":[{"ApiKeyInHeader":[]}],"paths":{"/mcp":{"post":{"requestBody":{"content":{"application/json":{}}}}}}}

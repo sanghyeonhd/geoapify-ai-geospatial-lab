@@ -1,0 +1,1 @@
+{"info":{"title":"Offline subset of Geoapify Places OpenAPI","version":"snapshot-2026-10-12"},"security":[{"ApiKeyInHeader":[]}],"paths":{"/places":{"get":{"parameters":[{"name":"categories"},{"name":"filter"},{"name":"bias"},{"name":"limit"}]}}}}

@@ -1,0 +1,16 @@
+{
+  "name": "geoapify-ai-geospatial-lab",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Privacy-independent, credit-aware Geoapify OpenAPI and MCP CLI experiments",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/cli.mjs",
+    "test": "node --test",
+    "spec:check": "node scripts/check-openapi.mjs",
+    "examples": "node src/cli.mjs examples"
+  },
+  "license": "MIT",
+  "keywords": ["geoapify", "openapi", "mcp", "geocoding", "places", "routing", "cli", "geospatial"]
+}
