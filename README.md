@@ -52,9 +52,12 @@ The CLI can discover and invoke Geoapify's remote HTTP MCP tools through JSON-RP
 ```bash
 node --env-file=.env src/cli.mjs mcp-tools --live
 node --env-file=.env src/cli.mjs mcp-geocode 'Berlin, Germany' --live
+node --env-file=.env src/cli.mjs mcp-discover 'Berlin, Germany' --category catering.cafe --country-code de --live
 node --env-file=.env src/cli.mjs mcp-places --lat 52.52 --lon 13.405 --category catering.cafe --live
 node --env-file=.env src/cli.mjs mcp-route --from 52.52,13.405 --to 52.5163,13.3777 --live
 ```
+
+The new `mcp-discover` command chains `geocode_address` → `search_places` with a two-letter country guard and no LLM reasoning, so reviewers can compare identical REST and MCP workflows directly. It requires a real Geoapify key and uses up to two billable tool calls.
 
 For agent-led tool selection, connect the bundled `.mcp.json` in **Claude Code**. Export `GEOAPIFY_API_KEY` into the shell environment where Claude Code starts; see [step-by-step walkthrough](docs/WALKTHROUGH.md) and [safe agent prompts](prompts/CLAUDE_AGENT.md). Official provider MCP docs: https://apidocs.geoapify.com/docs/mcp/.
 
@@ -84,7 +87,7 @@ For agent-led tool selection, connect the bundled `.mcp.json` in **Claude Code**
   Offline unit tests use mock responses (no real requests).
 ```
 
-Main files: `src/geoapify.mjs` (REST and MCP client), `src/workflow.mjs` (two-call POI workflow), `src/cli.mjs` (explicit opt-in CLI), `src/batch-geocode.mjs` (upstream sample adaptation), `scripts/check-openapi.mjs` (OpenAPI endpoint contract checks).
+Main files: `src/geoapify.mjs` (REST and MCP client), `src/workflow.mjs` (two-call REST POI workflow), `src/mcp-workflow.mjs` (two-tool MCP reference workflow), `src/cli.mjs` (explicit opt-in CLI), `src/batch-geocode.mjs` (upstream sample adaptation), `scripts/check-openapi.mjs` (OpenAPI endpoint contract checks).
 
 ## Geoapify OpenAPI sources
 

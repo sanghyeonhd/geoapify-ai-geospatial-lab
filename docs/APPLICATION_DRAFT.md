@@ -1,9 +1,9 @@
-# Application draft — send only after confirming the GitHub URL
+# Geoapify Batch #2 application draft — public repository published
 
 **Official program:** https://www.geoapify.com/open-geospatial-program/#batch-2-ai-geospatial  
 **Subject:** Geoapify Open Geospatial Program - Batch #2 Application
 
-This is a proposal, NOT the post-selection Final Submission. The public repository is **not yet published** from this working environment. Do not claim the URL is live until it resolves.
+This is a proposal, NOT the post-selection Final Submission. The public project repository is published at https://github.com/sanghyeonhd/geoapify-ai-geospatial-lab. Offline tests pass; live Geoapify/AI-client validation is not yet claimed.
 
 ## 1. Who are you?
 - Name: Daniel Lee
@@ -17,19 +17,19 @@ This is a proposal, NOT the post-selection Final Submission. The public reposito
 - Project format and category (Build / Agent / Automate / Experiment): Build + Experiment, with an optional MCP Agent track.
 
 ## 3. Links (existing resources)
-- Your GitHub repository: https://github.com/sanghyeonhd (project repository will be linked after publication).
+- Your GitHub repository: https://github.com/sanghyeonhd/geoapify-ai-geospatial-lab
 - Portfolio / blog / profile: https://github.com/sanghyeonhd
 - Other: https://github.com/geoapify/maps-api-code-samples (MIT-licensed upstream example, properly credited).
 
 ## 4. Geoapify and AI approach
 - Track (OpenAPI / MCP / both): Both.
-- Which Geoapify specifications, APIs, or MCP tools do you expect to use? Forward Geocoding, Places and Routing OpenAPI schemas, plus MCP `tools/list`, `geocode_address`, `search_places`, and `calculate_route`.
+- Which Geoapify specifications, APIs, or MCP tools do you expect to use? Forward Geocoding, Places and Routing OpenAPI schemas, plus MCP `tools/list`, `geocode_address`, `search_places`, and `calculate_route`. A deterministic `mcp-discover` command now chains geocoding and place discovery for side-by-side REST comparison.
 - Which AI coding tool, AI client, or agent framework will you use? AI-assisted Node.js development, with Claude Code planned as the MCP-compatible agent client. No paid LLM API key is needed for the CLI reference.
 - How will you capture prompts, tool use, and lessons learned? Public `prompts/CLAUDE_AGENT.md`, `docs/BUILD_LOG.md`, mocked unit tests, sanitized tool-call traces and `docs/FEEDBACK.md`. Live agent observations will be recorded after testing with a private Geoapify key, without sharing the key.
 
 ## 5. Deliverables
-- Where will the public code be published? Planned public GitHub repository under https://github.com/sanghyeonhd/geoapify-ai-geospatial-lab . The software package is prepared and will be published before final submission.
-- How will reviewers run or reproduce your project (including AI client setup, if needed)? Node.js 20.12+; run `npm test`, `npm run spec:check`, and `npm run examples` offline. Use `GEOAPIFY_API_KEY` and explicit `--live` for real Geoapify API calls. For AI-led tests, connect the bundled `.mcp.json` to Claude Code and run example prompts. The documented initial offline suite passes 17 tests.
+- Where will the public code be published? Published public GitHub repository: https://github.com/sanghyeonhd/geoapify-ai-geospatial-lab .
+- How will reviewers run or reproduce your project (including AI client setup, if needed)? Node.js 20.12+; run `npm test`, `npm run spec:check`, and `npm run examples` offline. Use `GEOAPIFY_API_KEY` and explicit `--live` for real Geoapify API calls. For AI-led tests, connect the bundled `.mcp.json` to Claude Code and run example prompts. The documented initial offline suite passes 21 tests.
 - Where will the tutorial or walkthrough be published? `docs/WALKTHROUGH.md` in the public repository, with architecture, setup, API calls, MCP configuration, agent prompts, known limitations and feedback.
 
 ## 6. Timeline

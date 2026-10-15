@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { GeoapifyClient, GeoapifyError, parsePoint, validatePoint, safeCategory, summarizePlaces, summarizeRoute, bestGeocodeResult } from './geoapify.mjs';
 import { discoverPlaces } from './workflow.mjs';
+import { mcpDiscoverPlaces } from './mcp-workflow.mjs';
 
 function help() {
   return `Geoapify AI Geospatial Lab — independent OpenAPI + MCP experiment
@@ -16,6 +17,7 @@ Live (explicit --live + GEOAPIFY_API_KEY, maximum 6 requests per invocation):
   node src/cli.mjs route --from 52.52,13.405 --to 52.5163,13.3777 --mode walk --live
   node src/cli.mjs mcp-tools --live
   node src/cli.mjs mcp-geocode "Berlin, Germany" --live
+  node src/cli.mjs mcp-discover "Berlin, Germany" --category catering.cafe --country-code de --live
   node src/cli.mjs mcp-places --lat 52.52 --lon 13.405 --category catering.cafe --live
   node src/cli.mjs mcp-route --from 52.52,13.405 --to 52.5163,13.3777 --live
 
@@ -32,7 +34,7 @@ export function parseArgs(argv) {
     if (item === '--live') { opts.live = true; continue; }
     if (item.startsWith('--')) {
       const key = item.slice(2);
-      if (!['lat', 'lon', 'category', 'radius', 'limit', 'from', 'to', 'mode'].includes(key)) throw new GeoapifyError(`Unknown option ${item}`);
+      if (!['lat', 'lon', 'category', 'radius', 'limit', 'from', 'to', 'mode', 'country-code'].includes(key)) throw new GeoapifyError(`Unknown option ${item}`);
       if (i + 1 >= raw.length || raw[i + 1].startsWith('--')) throw new GeoapifyError(`Missing value for ${item}`);
       opts[key] = raw[++i];
     } else positional.push(item);
@@ -80,6 +82,13 @@ export async function execute(args) {
     case 'mcp-geocode':
       if (!positional.length) throw new GeoapifyError('MCP geocode query is required');
       result = await client.mcpCall('geocode_address', { query: positional.join(' '), limit: 1 }); break;
+    case 'mcp-discover':
+      result = await mcpDiscoverPlaces(client, {
+        address: positional.join(' '), category: opts.category,
+        radius: opts.radius === undefined ? 1000 : Number(opts.radius),
+        limit: opts.limit === undefined ? 5 : Number(opts.limit),
+        countryCode: opts['country-code']
+      }); break;
     case 'mcp-places': {
       const point = validatePoint({ lat: Number(opts.lat), lon: Number(opts.lon) });
       const radius = opts.radius === undefined ? 1000 : Number(opts.radius);

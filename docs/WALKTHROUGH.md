@@ -10,7 +10,7 @@ npm run spec:check
 npm run examples
 ```
 
-Expected: 16+ unit tests pass; four endpoint contracts pass; a synthetic place is printed with `apiCalls: 0`. The sample place is fake and is used only to demonstrate output shape. This step must not make any API request.
+Expected: 21 unit tests pass; four endpoint contracts pass; a synthetic place is printed with `apiCalls: 0`. The sample place is fake and is used only to demonstrate output shape. This step must not make any API request.
 
 ## Step 2: Read the relevant OpenAPI definitions
 
@@ -55,9 +55,10 @@ Manual check: Is `resolvedAddress` in the intended country? If not, do not accep
 ```bash
 node --env-file=.env src/cli.mjs mcp-tools --live
 node --env-file=.env src/cli.mjs mcp-geocode 'Berlin, Germany' --live
+node --env-file=.env src/cli.mjs mcp-discover 'Berlin, Germany' --category catering.cafe --country-code de --live
 ```
 
-`mcp-tools` sends JSON-RPC `tools/list`; `mcp-geocode` sends `tools/call` for `geocode_address`. The endpoint is `https://api.geoapify.com/v1/mcp`, with `x-api-key` stored only in the HTTP header. `mcp-geocode` displays the raw tool response to avoid undocumented assumptions about return shapes.
+`mcp-tools` sends JSON-RPC `tools/list`; `mcp-geocode` sends `tools/call` for `geocode_address`. The endpoint is `https://api.geoapify.com/v1/mcp`, with `x-api-key` stored only in the HTTP header. `mcp-discover` chains two MCP tools and refuses a mismatched country before searching places. `mcp-geocode` displays the raw tool response to avoid undocumented assumptions about return shapes.
 
 ## Step 6: Connect a real AI assistant (Claude Code)
 
